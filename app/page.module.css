@@ -1,9 +1,37 @@
-.root{
+.root {
     width: 100vw;
     height: 100vh;
-    background: #caecde;
 
     display: flex;
     justify-content: center;
     align-items: center;
+position: relative;
+}
+
+.topFrontend {
+    gap: 16px;
+}
+.imgIvan:hover{
+    mix-blend-mode: hard-light;
+}
+
+.imgAndrew:hover{
+    mix-blend-mode: hard-light;
+}
+
+.imgKirill:hover{
+    position: absolute;
+    cursor: pointer;
+}
+
+.img_fake{
+    position: absolute;
+    cursor: pointer;
+    width: 300px;
+    height: 300px;
+    background: #caecde;
+}
+
+.img_fake_1{
+    background: #ddcaec;
 }
