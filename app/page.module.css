@@ -1,37 +1,60 @@
 .root {
     width: 100vw;
     height: 100vh;
-
+    background: #818181;
     display: flex;
     justify-content: center;
     align-items: center;
-position: relative;
+    position: relative;
 }
 
 .topFrontend {
     gap: 16px;
 }
-.imgIvan:hover{
-    mix-blend-mode: hard-light;
+
+.imgIvan:hover {
 }
 
-.imgAndrew:hover{
-    mix-blend-mode: hard-light;
+.imgAndrew:hover {
 }
 
-.imgKirill:hover{
+.imgKirill:hover {
+
+}
+
+.img {
     position: absolute;
     cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    transition: all 0.5s ease;
 }
 
-.img_fake{
-    position: absolute;
-    cursor: pointer;
-    width: 300px;
-    height: 300px;
-    background: #caecde;
-}
-
-.img_fake_1{
+.img_fake_1 {
     background: #ddcaec;
+}
+
+.animation_on {
+    animation: 1s rotateLeftRight infinite;
+}
+
+@keyframes rotateLeftRight {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(5deg);
+
+    }
+    50% {
+        transform: rotate(0deg);
+
+    }
+    75% {
+        transform: rotate(-5deg);
+
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
