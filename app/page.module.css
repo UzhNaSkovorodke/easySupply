@@ -1,7 +1,7 @@
 .root {
     width: 100vw;
     height: 100vh;
-    background: #818181;
+    /*background: #818181;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,6 +19,9 @@
 }
 
 .imgKirill:hover {
+
+}
+.imgPaata{
 
 }
 

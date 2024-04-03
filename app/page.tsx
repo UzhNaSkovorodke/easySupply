@@ -11,17 +11,20 @@ interface Position {
 }
 
 export default function Home() {
+    const nextImageProp = {width: 250, height: 250, alt: 'img'}
 
     const [positionIvan, setPositionIvan] = useState<Position>({x: 15, y: 400, id: 'ivan'});
     const [positionKirill, setPositionKirill] = useState<Position>({x: 350, y: 400, id: 'kirill'});
     const [positionAndrew, setPositionAndrew] = useState<Position>({x: 700, y: 400, id: 'andrew'});
-    const [positionPaata, setPositionPaata] = useState<Position>({x: 1000, y: 0, id: 'paata'});
+    const [positionPaata, setPositionPaata] = useState<Position>({x: 1000, y: 400, id: 'paata'});
+    const [positionSvyata, setPositionSvyata] = useState<Position>({x: 1300, y: 400, id: 'svyata'});
 
     const stateArr = [
         {state: positionIvan, setState: setPositionIvan},
         {state: positionKirill, setState: setPositionKirill},
         {state: positionAndrew, setState: setPositionAndrew},
-        {state: positionPaata, setState: setPositionPaata}]
+        {state: positionPaata, setState: setPositionPaata},
+        {state: positionSvyata, setState: setPositionSvyata}]
 
     const [maxPos, setMaxPos] = useState<{ x: number, y: number } | null>(null);
 
@@ -42,21 +45,23 @@ export default function Home() {
     }
 
     const handleClick = (event: MouseEvent<HTMLDivElement>): void => {
-        let maxX, maxY
+        const maxTransform = {maxX: 0, maxY: 0}
 
-        const cursorX = event.clientX;
-        const cursorY = event.clientY;
+        const cursorTransform = {cursorX: event.clientX, cursorY: event.clientY};
         const target = event.target as HTMLDivElement
         const rect = target.getBoundingClientRect();
 
         if (maxPos?.y && maxPos?.x) {
-            maxX = (maxPos.x - rect.width);
-            maxY = (maxPos.y - rect.height);
+            maxTransform.maxX = (maxPos.x - rect.width);
+            maxTransform.maxY = (maxPos.y - rect.height);
         }
 
-
-        stateArr.filter((elem) => target?.id === elem.state.id)[0].setState(generateNewPos(cursorX, cursorY, rect, maxX ?? 0, maxY ?? 0, target?.id));
+        if (target.id !== 'paata') stateArr
+            .filter((elem) => target?.id === elem.state.id)[0]
+            ?.setState(generateNewPos(cursorTransform, rect, maxTransform, target?.id));
         setRotateAnimation(target?.id)
+
+        if (target.id === 'paata') alert('ТЫ ЧЕ УМНИК?? САМ УВОЛЕН')
     };
 
     return (
@@ -66,25 +71,28 @@ export default function Home() {
 
                     <div className={`${s.imgIvan} ${s.img}`} onMouseEnter={handleClick} onClick={handleClick}
                          style={{left: `${positionIvan?.x}px`, top: `${positionIvan?.y}px`}}>
-                        <Image src={'/image/exmple.jpg'} alt={'ivan'} width={250} id={'ivan'}
-                               height={250}/>
+                        <Image src={'/image/popal.png'} id={'ivan'} {...nextImageProp}/>
                     </div>
 
                     <div className={`${s.imgKirill} ${s.img}`} onMouseEnter={handleClick} onClick={handleClick}
                          style={{left: `${positionKirill.x}px`, top: `${positionKirill.y}px`}}>
-                        <Image src={'/image/leaf.webp'} alt={'kirill'} width={250} id={'kirill'}
-                               height={250}/>
+                        <Image src={'/image/popal3.png'} id={'kirill'} {...nextImageProp}/>
                     </div>
 
                     <div className={`${s.imgAndrew} ${s.img}`} onMouseEnter={handleClick} onClick={handleClick}
                          style={{left: `${positionAndrew.x}px`, top: `${positionAndrew.y}px`}}>
-                        <Image src={'/image/exmple2.jpg'} alt={'andrew'} width={250} id={'andrew'}
-                               height={250}/>
+                        <Image src={'/image/popal2.png'} id={'andrew'} {...nextImageProp}/>
                     </div>
 
+                    <div className={`${s.imgPaata} ${s.img}`} onClick={handleClick}
+                         style={{left: `${positionPaata.x}px`, top: `${positionPaata.y}px`}}>
+                        <Image src={'/image/popal4.png'} id={'paata'} {...nextImageProp}/>
+                    </div>
 
-                    {/*<Image className={s.imgAndrew}  src={'/image/popal2.png'} alt={'traktor'} width={320} height={320}/>*/}
-                    {/*<Image className={s.imgKirill}  src={'/image/popal3.png'} alt={'traktor'} width={320} height={320}/>*/}
+                    <div className={`${s.imgSvyata} ${s.img}`} onMouseEnter={handleClick} onClick={handleClick}
+                         style={{left: `${positionSvyata.x}px`, top: `${positionSvyata.y}px`}}>
+                        <Image src={'/image/img.png'} id={'svyata'} {...nextImageProp}/>
+                    </div>
 
                 </div>
             </div>
